@@ -3,12 +3,14 @@ import logo from "@/assets/images/logo-white.png";
 import profile from "@/assets/images/profile.png";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export const Navbar = () => {
 	const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const pathname = usePathname();
 
 	return (
 		<nav className="bg-blue-700 border-b border-blue-500">
@@ -57,21 +59,27 @@ export const Navbar = () => {
 							<div className="flex space-x-2">
 								<Link
 									href="/"
-									className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+									className={`text-white ${
+										pathname === "/" && "bg-black"
+									} hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
 								>
 									Home
 								</Link>
 								<Link
 									href="/properties"
-									className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+									className={`text-white ${
+										pathname === "/properties" && "bg-black"
+									} hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
 								>
 									Properties
 								</Link>
 
 								{isLoggedIn && (
 									<Link
-										href={"properties/add"}
-										className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+										href={"/properties/add"}
+										className={`text-white ${
+											pathname === "/properties" && "bg-black"
+										} hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
 									>
 										Add Property
 									</Link>
@@ -188,13 +196,17 @@ export const Navbar = () => {
 				<div className="space-y-1 px-2 pb-3 pt-2">
 					<Link
 						href="/"
-						className="bg-black text-white block rounded-md px-3 py-2 text-base font-medium"
+						className={`${
+							pathname === "/" && "bg-black"
+						}bg-black text-white block rounded-md px-3 py-2 text-base font-medium`}
 					>
 						Home
 					</Link>
 					<Link
 						href="/properties"
-						className="text-white block rounded-md px-3 py-2 text-base font-medium"
+						className={`${
+							pathname === "/" && "bg-black"
+						}bg-black text-white block rounded-md px-3 py-2 text-base font-medium`}
 					>
 						Properties
 					</Link>
@@ -202,7 +214,9 @@ export const Navbar = () => {
 					{isLoggedIn && (
 						<Link
 							href="/properties/add"
-							className="text-white block rounded-md px-3 py-2 text-base font-medium"
+							className={`${
+								pathname === "/" && "bg-black"
+							}bg-black text-white block rounded-md px-3 py-2 text-base font-medium`}
 						>
 							Add Property
 						</Link>
