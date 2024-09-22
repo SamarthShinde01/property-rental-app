@@ -1,11 +1,13 @@
 import properties from "@/properties.json";
 import { PropertyCard } from "./PropertyCard";
 import Link from "next/link";
+import Property from "@/models/Property";
 
-export const HomeProperties = () => {
-	const recentProperties = properties
-		.sort(() => Math.random() - Math.random())
-		.slice(0, 3);
+export const HomeProperties = async () => {
+	const recentProperties = await Property.find({})
+		.sort({ createdAt: -1 })
+		.limit(3)
+		.lean();
 	return (
 		<>
 			<section className="px-4 py-6">

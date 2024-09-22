@@ -1,9 +1,9 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 const PropertySchema = new mongoose.Schema(
 	{
 		owner: {
-			type: new mongoose.Types.ObjectId(),
+			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
 			required: true,
 		},
@@ -60,6 +60,7 @@ const PropertySchema = new mongoose.Schema(
 	}
 );
 
-const Property = mongoose.model("Property", PropertySchema);
+const Property =
+	mongoose.models.Property || mongoose.model("Property", PropertySchema);
 
 export default Property;
