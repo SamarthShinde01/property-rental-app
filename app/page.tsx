@@ -1,3 +1,13 @@
+import { Footer } from "@/components/Footer";
+import { Hero } from "@/components/Hero";
+import { InfoBoxes } from "@/components/InfoBoxes";
+
 export default function Home() {
-	return <div className="text-4xl font-bold">hiii there sama</div>;
+	return (
+		<>
+			<Hero />
+			<InfoBoxes />
+			<Footer />
+		</>
+	);
 }
