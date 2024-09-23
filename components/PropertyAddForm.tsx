@@ -1,8 +1,28 @@
+"use client";
 import addProperty from "@/app/actions/addProperty";
+import LoadingSpinner from "@/app/loading";
+import { useState } from "react";
 
 const PropertyAddForm = () => {
+	const [loading, setLoading] = useState(false);
+
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setLoading(true);
+
+		const formData = new FormData(e.currentTarget);
+
+		try {
+			await addProperty(formData);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return (
-		<form action={addProperty}>
+		<form onSubmit={handleSubmit}>
 			<h2 className="text-3xl text-center font-semibold mb-6">Add Property</h2>
 
 			<div className="mb-4">
@@ -393,15 +413,25 @@ const PropertyAddForm = () => {
 					multiple
 				/>
 			</div>
-
-			<div>
-				<button
-					className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
-					type="submit"
-				>
-					Add Property
-				</button>
-			</div>
+			{loading ? (
+				<div>
+					<button
+						className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+						type="button"
+					>
+						Uploading Property
+					</button>
+				</div>
+			) : (
+				<div>
+					<button
+						className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
+						type="submit"
+					>
+						Add Property
+					</button>
+				</div>
+			)}
 		</form>
 	);
 };

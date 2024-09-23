@@ -77,6 +77,5 @@ export default async function addProperty(formData: any) {
 	await newProperty.save();
 
 	revalidatePath("/", "layout");
-
 	redirect(`/properties/${newProperty._id}`);
 }

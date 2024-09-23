@@ -91,7 +91,7 @@ export const Navbar = () => {
 									<Link
 										href={"/properties/add"}
 										className={`text-white ${
-											pathname === "/properties" && "bg-black"
+											pathname === "/properties/add" && "bg-black"
 										} hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
 									>
 										Add Property
@@ -242,7 +242,7 @@ export const Navbar = () => {
 							href="/properties/add"
 							className={`${
 								pathname === "/" && "bg-black"
-							}bg-black text-white block rounded-md px-3 py-2 text-base font-medium`}
+							} text-white block rounded-md px-3 py-2 text-base font-medium`}
 						>
 							Add Property
 						</Link>
