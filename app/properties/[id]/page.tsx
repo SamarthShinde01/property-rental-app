@@ -1,17 +1,16 @@
 import { PropertyDetail } from "@/components/PropertyDetails";
 import { PropretyHeaderImage } from "@/components/PropertyHeaderImage";
+import { PropertyImages } from "@/components/PropertyImages";
 import { connectDB } from "@/config/database";
 import Property from "@/models/Property";
 
 export default async function PropertyByIdPage({ params }: { params: any }) {
 	await connectDB();
-
 	const property = await Property.findById(params.id).lean();
 
 	return (
 		<>
 			<PropretyHeaderImage image={property.images[0]} />
-
 			<section className="bg-blue-50">
 				<div className="container m-auto py-10 px-6">
 					<div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
@@ -42,7 +41,6 @@ export default async function PropertyByIdPage({ params }: { params: any }) {
 										<input
 											className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 											id="name"
-											name="name"
 											type="text"
 											placeholder="Enter your name"
 											required
@@ -58,7 +56,6 @@ export default async function PropertyByIdPage({ params }: { params: any }) {
 										<input
 											className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 											id="email"
-											name="email"
 											type="email"
 											placeholder="Enter your email"
 											required
@@ -74,7 +71,6 @@ export default async function PropertyByIdPage({ params }: { params: any }) {
 										<input
 											className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
 											id="phone"
-											name="phone"
 											type="text"
 											placeholder="Enter your phone number"
 										/>
@@ -89,7 +85,6 @@ export default async function PropertyByIdPage({ params }: { params: any }) {
 										<textarea
 											className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 h-44 focus:outline-none focus:shadow-outline"
 											id="message"
-											name="message"
 											placeholder="Enter your message"
 										></textarea>
 									</div>
@@ -107,6 +102,7 @@ export default async function PropertyByIdPage({ params }: { params: any }) {
 					</div>
 				</div>
 			</section>
+			<PropertyImages images={property.images} />
 		</>
 	);
 }
