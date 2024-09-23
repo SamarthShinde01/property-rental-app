@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import deleteProperty from "@/app/actions/deleteProperty";
+import { toast } from "react-toastify";
 
 export const ProfileProperty = ({ property }: any) => {
 	const handleDeleteProperty = async (propertyId: any) => {
@@ -14,6 +15,7 @@ export const ProfileProperty = ({ property }: any) => {
 		}
 
 		deleteProperty(propertyId);
+		toast.success("Property deleted successfully");
 	};
 
 	return (

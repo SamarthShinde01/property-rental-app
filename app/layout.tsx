@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "@/assets/styles/globals.css";
 import { Navbar } from "@/components/Navbar";
 import AuthProvider from "@/components/AuthProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 
 export const metadata: Metadata = {
 	title: "Property Rental App",
@@ -19,7 +21,8 @@ export default function RootLayout({
 			<html lang="en">
 				<body>
 					<Navbar />
-					{children}
+					<main>{children}</main>
+					<ToastContainer />
 				</body>
 			</html>
 		</AuthProvider>
