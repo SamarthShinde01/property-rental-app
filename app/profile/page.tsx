@@ -15,7 +15,9 @@ export default async function ProfilePage() {
 		throw new Error("User ID is required");
 	}
 
-	const properties = await Property.find({ owner: userId }).lean();
+	const properties = await Property.find({ owner: userId })
+		.sort({ createdAt: -1 })
+		.lean();
 
 	return (
 		<section className="bg-blue-50">
@@ -46,7 +48,7 @@ export default async function ProfilePage() {
 
 						<div className="md:w-3/4 md:pl-4">
 							<h2 className="text-xl font-semibold mb-4">Your Listings</h2>
-							{properties.map((property) => (
+							{properties?.map((property) => (
 								<ProfileProperty property={property} key={property._id} />
 							))}
 						</div>

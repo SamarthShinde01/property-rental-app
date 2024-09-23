@@ -1,7 +1,21 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import deleteProperty from "@/app/actions/deleteProperty";
 
 export const ProfileProperty = ({ property }: any) => {
+	const handleDeleteProperty = async (propertyId: any) => {
+		const confirmed = window.confirm(
+			"Are you sure you want to delete this property ?"
+		);
+
+		if (!confirmed) {
+			return;
+		}
+
+		deleteProperty(propertyId);
+	};
+
 	return (
 		<>
 			{property.length === 0 ? (
@@ -34,6 +48,7 @@ export const ProfileProperty = ({ property }: any) => {
 						<button
 							className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
 							type="button"
+							onClick={() => handleDeleteProperty(property._id)}
 						>
 							Delete
 						</button>

@@ -186,6 +186,7 @@ export const Navbar = () => {
 										className="block px-4 py-2 text-sm text-gray-700"
 										role="menuitem"
 										id="user-menu-item-0"
+										onClick={() => setIsProfileMenuOpen(false)}
 									>
 										Your Profile
 									</Link>
@@ -194,6 +195,7 @@ export const Navbar = () => {
 										className="block px-4 py-2 text-sm text-gray-700"
 										role="menuitem"
 										id="user-menu-item-2"
+										onClick={() => setIsProfileMenuOpen(false)}
 									>
 										Saved Properties
 									</Link>
