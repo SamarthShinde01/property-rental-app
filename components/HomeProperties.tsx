@@ -1,4 +1,3 @@
-import properties from "@/properties.json";
 import { PropertyCard } from "./PropertyCard";
 import Link from "next/link";
 import Property from "@/models/Property";
