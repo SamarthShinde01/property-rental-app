@@ -1,4 +1,5 @@
 "use server";
+import cloudinary from "@/config/cloudinary";
 import { connectDB } from "@/config/database";
 import Property from "@/models/Property";
 import { getSessionUser } from "@/utils/getSessionUser";
@@ -18,10 +19,7 @@ export default async function addProperty(formData: any) {
 
 	// Access all values for amenities and images
 	const amenities = formData.getAll("amenities");
-	const images = formData
-		.getAll("images")
-		.filter((image) => image.name !== "") // Filter out empty names
-		.map((image) => image.name); // Extract only the names
+	const images = formData.getAll("images").filter((image) => image.name !== "");
 
 	// Create the propertyData object with embedded seller_info
 	const propertyData = {
@@ -51,6 +49,29 @@ export default async function addProperty(formData: any) {
 		images,
 		owner: userId,
 	};
+
+	const imageUrls = [];
+
+	for (const imageFile of images) {
+		const imageBuffer = await imageFile.arrayBuffer();
+		const imageArray = Array.from(new Uint8Array(imageBuffer));
+		const imageData = Buffer.from(imageArray);
+
+		//convert to base64
+		const imageBase64 = imageData.toString("base64");
+
+		//make request to cloudinary
+		const result = await cloudinary.uploader.upload(
+			`data:image/png;base64,${imageBase64}`,
+			{
+				folder: "property-rental",
+			}
+		);
+
+		imageUrls.push(result.secure_url);
+	}
+
+	propertyData.images = imageUrls;
 
 	const newProperty = new Property(propertyData);
 	await newProperty.save();
