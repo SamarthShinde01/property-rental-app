@@ -7,6 +7,7 @@ export const HomeProperties = async () => {
 		.sort({ createdAt: -1 })
 		.limit(3)
 		.lean();
+
 	return (
 		<>
 			<section className="px-4 py-6">
