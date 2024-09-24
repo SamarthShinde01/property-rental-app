@@ -1,6 +1,7 @@
+"use client";
 import Image from "next/image";
 
-export const PropertyImages = ({ images }: any) => {
+export const PropertyImages = ({ images }: { images: string[] }) => {
 	return (
 		<section className="bg-blue-50 p-4">
 			<div className="container mx-auto">
@@ -15,7 +16,7 @@ export const PropertyImages = ({ images }: any) => {
 					/>
 				) : (
 					<div className={`grid grid-cols-2 gap-4`}>
-						{images.map((image, index) => (
+						{images.map((image) => (
 							<Image
 								src={image}
 								alt=""

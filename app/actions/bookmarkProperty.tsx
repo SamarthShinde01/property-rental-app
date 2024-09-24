@@ -4,11 +4,7 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import User from "@/models/User";
 import { revalidatePath } from "next/cache";
 
-export default async function bookmarkProperty({
-	propertyId,
-}: {
-	propertyId: string;
-}) {
+export default async function bookmarkProperty(propertyId: string) {
 	await connectDB();
 	const sessionUser = await getSessionUser();
 	if (!sessionUser || !sessionUser.userId) {
@@ -20,7 +16,6 @@ export default async function bookmarkProperty({
 	let isBookmarked = user.bookmarks.includes(propertyId);
 
 	let message;
-
 	if (isBookmarked) {
 		//if already bookmarked then remove
 		user.bookmarks.pull(propertyId);

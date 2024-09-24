@@ -2,6 +2,7 @@ import { BookmarkButton } from "@/components/BookmarkButton";
 import { ContactForm } from "@/components/ContactForm";
 import { PropertyDetail } from "@/components/PropertyDetails";
 import { PropretyHeaderImage } from "@/components/PropertyHeaderImage";
+import { PropertyImages } from "@/components/PropertyImages";
 import { ShareButtons } from "@/components/ShareButtons";
 import { connectDB } from "@/config/database";
 import Property from "@/models/Property";
@@ -29,6 +30,7 @@ export default async function PropertyByIdPage({ params }: { params: any }) {
 					</div>
 				</div>
 			</section>
+			<PropertyImages images={property.images} />
 		</>
 	);
 }

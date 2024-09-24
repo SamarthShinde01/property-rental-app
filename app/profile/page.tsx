@@ -51,6 +51,7 @@ export default async function ProfilePage() {
 							<h2 className="text-xl font-semibold mb-4">Your Listings</h2>
 							{properties?.map((property) => (
 								<ProfileProperty
+									key={property._id}
 									property={convertToSerializeableObject(property)}
 								/>
 							))}

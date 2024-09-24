@@ -6,6 +6,7 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 
 export default async function deleteProperty(propertyId: string) {
+	await connectDB();
 	const sessionUser = await getSessionUser();
 
 	if (!sessionUser || !sessionUser.userId) {

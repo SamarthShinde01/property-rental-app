@@ -14,7 +14,7 @@ export default async function PropertyPage() {
 				) : (
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 						{properties.map((property, index) => (
-							<PropertyCard key={index} property={property} />
+							<PropertyCard property={property} key={index} />
 						))}
 					</div>
 				)}
