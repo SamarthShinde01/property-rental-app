@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import deleteProperty from "@/app/actions/deleteProperty";
 import { toast } from "react-toastify";
+import { PropertyType } from "@/types/propertyTypes";
 
-export const ProfileProperty = ({ property }: any) => {
+export const ProfileProperty = ({ property }: PropertyType) => {
 	const handleDeleteProperty = async (propertyId: any) => {
 		const confirmed = window.confirm(
 			"Are you sure you want to delete this property ?"
@@ -42,7 +43,7 @@ export const ProfileProperty = ({ property }: any) => {
 					</div>
 					<div className="mt-2">
 						<Link
-							href={`/properties/edit/${property._id}`}
+							href={`/properties/${property._id}/edit`}
 							className="bg-blue-500 text-white px-3 py-3 rounded-md mr-2 hover:bg-blue-600"
 						>
 							Edit
