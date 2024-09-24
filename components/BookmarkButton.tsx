@@ -36,7 +36,7 @@ export const BookmarkButton = ({ property }: { property: PropertyType }) => {
 		try {
 			setLoading(true);
 			const res = await bookmarkProperty(property._id);
-			setIsBookmarked(!isBookmarked);
+			setIsBookmarked(res.isBookmarked);
 			toast.success(res.message);
 			console.log(res);
 		} catch (err) {
