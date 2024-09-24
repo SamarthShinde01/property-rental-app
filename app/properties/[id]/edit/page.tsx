@@ -1,9 +1,12 @@
 import { PropertyEditForm } from "@/components/PropertyEditForm";
 import { connectDB } from "@/config/database";
 import Property from "@/models/Property";
+import { convertToSerializeableObject } from "@/utils/convertToObject";
 
 export default async function EditPropertyPage({ params }) {
-	const property = await Property.findById(params.id).lean();
+	await connectDB();
+	const propertyDoc = await Property.findById(params.id).lean();
+	const property = convertToSerializeableObject(propertyDoc);
 
 	if (!property) {
 		return (
@@ -12,11 +15,12 @@ export default async function EditPropertyPage({ params }) {
 			</h1>
 		);
 	}
+
 	return (
 		<section className="bg-blue-50">
 			<div className="container m-auto  max-w-2xl py-24">
 				<div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
-					<PropertyEditForm property={property} />
+					<PropertyEditForm key={property._id} property={property} />
 				</div>
 			</div>
 		</section>

@@ -5,6 +5,7 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import Image from "next/image";
 import Property from "@/models/Property";
 import { ProfileProperty } from "@/components/ProfileProperty";
+import { convertToSerializeableObject } from "@/utils/convertToObject";
 
 export default async function ProfilePage() {
 	await connectDB();
@@ -49,7 +50,9 @@ export default async function ProfilePage() {
 						<div className="md:w-3/4 md:pl-4">
 							<h2 className="text-xl font-semibold mb-4">Your Listings</h2>
 							{properties?.map((property) => (
-								<ProfileProperty property={property} key={property._id} />
+								<ProfileProperty
+									property={convertToSerializeableObject(property)}
+								/>
 							))}
 						</div>
 					</div>

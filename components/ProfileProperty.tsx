@@ -5,7 +5,7 @@ import deleteProperty from "@/app/actions/deleteProperty";
 import { toast } from "react-toastify";
 import { PropertyType } from "@/types/propertyTypes";
 
-export const ProfileProperty = ({ property }: PropertyType) => {
+export const ProfileProperty = ({ property }: { property: PropertyType }) => {
 	const handleDeleteProperty = async (propertyId: any) => {
 		const confirmed = window.confirm(
 			"Are you sure you want to delete this property ?"
