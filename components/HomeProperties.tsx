@@ -1,8 +1,11 @@
 import { PropertyCard } from "./PropertyCard";
 import Link from "next/link";
 import Property from "@/models/Property";
+import { connectDB } from "@/config/database";
 
 export const HomeProperties = async () => {
+	await connectDB();
+
 	const recentProperties = await Property.find({})
 		.sort({ createdAt: -1 })
 		.limit(3)

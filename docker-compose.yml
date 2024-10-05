@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    container_name: property_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_volume:/data/db
+
+  backend:
+    build: .
+    container_name: property_app
+    depends_on:
+      - mongodb
+    ports:
+      - "3000:3000"
+    environments:
+      - DATABASE_URI="mongodb://property_mongodb:27017/property_rental"
+      - NEXT_PUBLIC_DOMAIN="http://localhost:3000"
+      - NEXT_PUBLIC_API_DOMAIN="http://localhost:3000/api"
+      - GOOGLE_CLIENT_ID=
+      - GOOGLE_CLIENT_SECRET=
+      - NEXTAUTH_URL="http://localhost:3000"
+      - NEXTAUTH_URL_INTERNAL="http://localhost:3000"
+      - NEXTAUTH_SECRET=
+      - CL0UDINARY_CLOUD_NAME
+      - CLOUDINARY_API_KEY=
+      - CLOUDINARY_API_SECRET=
+
+volumes: mongo_volume
