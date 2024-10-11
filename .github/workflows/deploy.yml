@@ -24,7 +24,7 @@ jobs:
           context: .
           file: ./docker/Dockerhub
           push: true
-          tags: samarthshinde/web-app:latest
+          tags: samarthshinde/property-app:latest
 
       - name: Verify pushed image
-        run: docker pull samarthshinde/web-app:latest
+        run: docker pull samarthshinde/property-app:latest
