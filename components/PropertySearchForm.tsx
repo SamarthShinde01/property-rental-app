@@ -7,7 +7,7 @@ export const PropertySearchForm = () => {
 	const [propertyType, setPropertyType] = useState("All");
 	const router = useRouter();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: any) => {
 		e.preventDefault();
 
 		if (location === "" && propertyType === "All") {

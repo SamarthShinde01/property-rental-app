@@ -5,7 +5,10 @@ import { getSessionUser } from "@/utils/getSessionUser";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default async function updateProperty(propertyId, formData) {
+export default async function updateProperty(
+	propertyId: string,
+	formData: FormData
+) {
 	await connectDB();
 
 	const sessionUser = await getSessionUser();

@@ -2,11 +2,12 @@ import { PropertyCard } from "./PropertyCard";
 import Link from "next/link";
 import Property from "@/models/Property";
 import { connectDB } from "@/config/database";
+import { PropertyType } from "@/types/propertyTypes";
 
 export const HomeProperties = async () => {
 	await connectDB();
 
-	const recentProperties = await Property.find({})
+	const recentProperties: any = await Property.find({})
 		.sort({ createdAt: -1 })
 		.limit(3)
 		.lean();
@@ -23,7 +24,7 @@ export const HomeProperties = async () => {
 						<p>No properties available</p>
 					) : (
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-							{recentProperties.map((property, index) => (
+							{recentProperties.map((property: PropertyType, index: number) => (
 								<PropertyCard key={index} property={property} />
 							))}
 						</div>

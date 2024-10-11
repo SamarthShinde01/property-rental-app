@@ -2,6 +2,7 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { PropertySearchForm } from "@/components/PropertySearchForm";
 import { connectDB } from "@/config/database";
 import Property from "@/models/Property";
+import { PropertyType } from "@/types/propertyTypes";
 import { convertToSerializeableObject } from "@/utils/convertToObject";
 import Link from "next/link";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
@@ -22,7 +23,7 @@ export default async function SearchPropertyPage({
 
 	const locationPattern = new RegExp(location, "i");
 
-	let query = {
+	let query: any = {
 		$or: [
 			{ name: locationPattern },
 			{ description: locationPattern },
@@ -62,7 +63,7 @@ export default async function SearchPropertyPage({
 						<p>No search results</p>
 					) : (
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-							{properties.map((property) => (
+							{properties.map((property: PropertyType) => (
 								<PropertyCard property={property} key={property._id} />
 							))}
 						</div>

@@ -27,7 +27,7 @@ export default async function deleteProperty(propertyId: string) {
 	}
 
 	//extract public ID from image URLs
-	const publicIds = property.images.map((imageUrl) => {
+	const publicIds = property.images.map((imageUrl: any) => {
 		const parts = imageUrl.split("/");
 		return parts.at(-1).split(".").at(0);
 	});

@@ -10,7 +10,7 @@ import { convertToSerializeableObject } from "@/utils/convertToObject";
 export default async function ProfilePage() {
 	await connectDB();
 	const sessionUser = await getSessionUser();
-	const { userId } = sessionUser;
+	const { userId }: any = sessionUser;
 
 	if (!userId) {
 		throw new Error("User ID is required");
@@ -49,9 +49,9 @@ export default async function ProfilePage() {
 
 						<div className="md:w-3/4 md:pl-4">
 							<h2 className="text-xl font-semibold mb-4">Your Listings</h2>
-							{properties?.map((property) => (
+							{properties?.map((property, index) => (
 								<ProfileProperty
-									key={property._id}
+									key={index}
 									property={convertToSerializeableObject(property)}
 								/>
 							))}

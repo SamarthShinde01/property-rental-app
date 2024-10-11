@@ -1,9 +1,10 @@
 import { PropertyCard } from "@/components/PropertyCard";
 import User from "@/models/User";
+import { PropertyType } from "@/types/propertyTypes";
 import { getSessionUser } from "@/utils/getSessionUser";
 
 export default async function SavedPropertiesPage() {
-	const { userId } = await getSessionUser();
+	const { userId }: any = await getSessionUser();
 	const { bookmarks } = await User.findById(userId).populate("bookmarks");
 
 	return (
@@ -14,7 +15,7 @@ export default async function SavedPropertiesPage() {
 					<p>No Saved Properties found</p>
 				) : (
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-						{bookmarks.map((property, index) => (
+						{bookmarks.map((property: PropertyType, index: number) => (
 							<PropertyCard property={property} key={index} />
 						))}
 					</div>

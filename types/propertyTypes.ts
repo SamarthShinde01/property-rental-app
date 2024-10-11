@@ -5,19 +5,19 @@ export interface PropertyType {
 	type: string;
 	description: string;
 	location: {
-		street: string;
+		street?: string; // street is missing in your example, so making it optional
 		city: string;
 		state: string;
-		zipcode: number;
+		zipcode: string;
 	};
 	beds: number;
 	baths: number;
 	square_feet: number;
 	amenities: string[];
 	rates: {
-		nightly?: number;
-		weekly?: number;
-		monthly?: number;
+		nightly?: string;
+		weekly?: string;
+		monthly?: string;
 	};
 	seller_info: {
 		name: string;
@@ -25,7 +25,7 @@ export interface PropertyType {
 		phone: string;
 	};
 	images: string[];
-	is_features: boolean;
-	createdAt: string;
-	updatedAt: string;
+	is_featured: boolean; // corrected field name
+	createdAt: Date; // should be a Date type
+	updatedAt: Date; // should be a Date type
 }

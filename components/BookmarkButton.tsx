@@ -2,13 +2,12 @@
 import bookmarkProperty from "@/app/actions/bookmarkProperty";
 import { PropertyType } from "@/types/propertyTypes";
 import { useSession } from "next-auth/react";
-import { constants } from "os";
 import { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 export const BookmarkButton = ({ property }: { property: PropertyType }) => {
-	const { data: session } = useSession();
+	const { data: session }: any = useSession();
 	const userId = session?.user?.id;
 
 	const [loading, setLoading] = useState(false);
@@ -19,7 +18,7 @@ export const BookmarkButton = ({ property }: { property: PropertyType }) => {
 			try {
 				const res1 = await bookmarkProperty(property._id);
 				setIsBookmarked(res1.isBookmarked);
-			} catch (err) {
+			} catch (err: any) {
 				toast.error(err);
 			}
 		};
@@ -38,8 +37,7 @@ export const BookmarkButton = ({ property }: { property: PropertyType }) => {
 			const res = await bookmarkProperty(property._id);
 			setIsBookmarked(res.isBookmarked);
 			toast.success(res.message);
-			console.log(res);
-		} catch (err) {
+		} catch (err: any) {
 			toast.error(err);
 		} finally {
 			setLoading(false);
