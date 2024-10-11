@@ -24,7 +24,19 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: samarthshinde/property-app:latest # Replace with your Docker Hub username and repository
+          tags: samarthshinde/property-app:latest
+          build-args: |
+            DATABASE_URI=${{ secrets.DATABASE_URI }}
+            NEXT_PUBLIC_DOMAIN=${{ secrets.NEXT_PUBLIC_DOMAIN }}
+            NEXT_PUBLIC_API_DOMAIN=${{ secrets.NEXT_PUBLIC_API_DOMAIN }}
+            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+            NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
+            NEXTAUTH_URL_INTERNAL=${{ secrets.NEXTAUTH_URL_INTERNAL }}
+            NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
+            CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}
+            CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}
+            CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}
 
       - name: Verify Pushed Image
-        run: docker pull samarthshinde/property-app:latest # Replace with your Docker Hub username and repository
+        run: docker pull samarthshinde/property-app:latest
