@@ -5,6 +5,7 @@ import AuthProvider from "@/components/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import { Footer } from "@/components/Footer";
+import "photoswipe/photoswipe.css";
 
 export const metadata: Metadata = {
 	title: "Property Rental App",
