@@ -2,8 +2,9 @@
 import { connectDB } from "@/config/database";
 import Message from "@/models/Message";
 import { getSessionUser } from "@/utils/getSessionUser";
+import { error } from "console";
 
-export default async function addMessage(formData: any) {
+export default async function addMessage(state: any, formData: FormData) {
 	await connectDB();
 
 	const sessionUser = await getSessionUser();
@@ -34,4 +35,3 @@ export default async function addMessage(formData: any) {
 
 	return { submitted: true };
 }
-//
