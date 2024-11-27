@@ -5,6 +5,7 @@ import { useFormState, useFormStatus } from "react-dom";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import addMessage from "@/app/actions/addMessage";
+import SubmitMessageButton from "./SubmitMessageButton";
 
 export const ContactForm = ({ property }: { property: PropertyType }) => {
 	const { data: session } = useSession();
@@ -98,12 +99,7 @@ export const ContactForm = ({ property }: { property: PropertyType }) => {
 						></textarea>
 					</div>
 					<div>
-						<button
-							className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center"
-							type="submit"
-						>
-							<i className="fas fa-paper-plane mr-2"></i> Send Message
-						</button>
+						<SubmitMessageButton />
 					</div>
 				</form>
 			</div>

@@ -16,8 +16,9 @@ export const PropertyImages = ({ images }: { images: string[] }) => {
 					/>
 				) : (
 					<div className={`grid grid-cols-2 gap-4`}>
-						{images.map((image) => (
+						{images.map((image, index) => (
 							<Image
+								key={index}
 								src={image}
 								alt=""
 								className="object-cover h-[400px] w-full rounded-xl"
